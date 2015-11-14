@@ -1,0 +1,21 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#Employee
+POST        /resumes               controllers.ResumeController.getResumes
+POST        /employee/newResume           controllers.ResumeController.saveResume
+POST        /getResume             controllers.ResumeController.getResume
+
+POST        /deleteByIdResume             controllers.ResumeController.deleteById
+
+
+POST    /employee/resumes      		controllers.ResumeController.resumes
+POST    /employee/resume      		controllers.ResumeController.resume
+#POST   /employee/newResume      	controllers.ResumeController.newResume
+POST    /employee/updateResume      controllers.ResumeController.updateResume
+POST    /employee/deleteResume      controllers.ResumeController.deleteResume
+
+POST    /employee/profile      		controllers.ResumeController.profile
+POST    /employee/updateProfile     controllers.ResumeController.updateProfile
+POST    /employee/deleteCustomer    controllers.ResumeController.deleteCustomer
