@@ -10,6 +10,21 @@ import scala.concurrent.Future
 
 object ResumeController extends Controller {
 
+  case class NewResumeForm(name: String, description: String,
+    skills: String, experience: String, education: String, salary: String) {
+    def toResume: Resume = Resume(BSONObjectID.generate, name, description, 
+      skills, experience, education, salary)
+  }
+
+  case class EditResumeForm(id: String, name: String, description: String,
+    skills: String, experience: String, education: String, salary: String) {
+    def toResume: Resume = Resume(new BSONObjectID(id), name, description, 
+      skills, experience, education, salary)
+  }
+
+  implicit val newResumeFormFormat = Json.format[NewResumeForm]
+  implicit val editResumeFormFormat = Json.format[EditResumeForm]
+
   def getResumes() = Action.async { implicit req =>
     for {
       resumes <- ResumeDao.findAll()
@@ -41,56 +56,22 @@ object ResumeController extends Controller {
     }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-  case class ResumeForm(name: String, description: String,
-    skills: String, experience: String, education: String, salary: String) {
-    def toResume: Resume = Resume(BSONObjectID.generate, name, description, 
-      skills, experience, education, salary)
-  }
-
-  implicit val resumeFormFormat = Json.format[ResumeForm]
 
   def saveResume = Action.async(parse.json) { req =>
     println(req.body)
-    Json.fromJson[ResumeForm](req.body).fold(
+    Json.fromJson[NewResumeForm](req.body).fold(
       invalid => Future.successful(BadRequest("Bad resume form")),
       form => ResumeDao.save(form.toResume).map(_ => Created)
     )
   }
 
-def resumes = Action(parse.json) { request =>
-        (request.body \ "id").asOpt[String].map { id =>
-          println(id)
-            println(request.body)
-            /*val message = "Hello " + "editResume - " + id.toString
-            Ok(Json.obj(
-              "error_code" -> 0,
-              "message" -> message,
-              "id" -> id.toString
-            ))*/
-            Ok("resumes - " + id)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }
-
-    def resume = Action(parse.json) { request =>
-        (request.body \ "id").asOpt[String].map { id =>
-          println(id)
-            Ok("Hello " + "resume - " + id)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }
-
-    def newResume = Action(parse.json) { implicit request =>
-       (request.body \ "id").asOpt[String].map { id =>
-          println(id)
-            Ok("Hello " + "delete resume - " + id)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }   
-
+  def updateResume = Action.async(parse.json) { req =>
+    println(req.body)
+    Json.fromJson[EditResumeForm](req.body).fold(
+      invalid => Future.successful(BadRequest("Bad resume form")),
+      form => ResumeDao.save(form.toResume).map(_ => Created)
+    )
+  }
 
 /*
         println("newResume!!!!")
@@ -134,53 +115,5 @@ def resumes = Action(parse.json) { request =>
               ))
             }          
     }   */
-
-def updateResume = Action(parse.json) { request =>
-        (request.body \ "id").asOpt[String].map { id =>
-          println(id)
-            Ok("Hello " + "delete resume - " + id)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }
-
-    def deleteResume = Action(parse.json) { request =>
-        (request.body \ "id").asOpt[String].map { id =>
-          println(id)
-            Ok("Hello " + "delete resume - " + id)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }
-
-
-    //profile
-    def profile = Action(parse.json) { request =>
-        (request.body \ "name").asOpt[String].map { name =>
-          println(name)
-            Ok("Hello " + "profile - " + name)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }   
-
-    def updateProfile = Action(parse.json) { request =>
-        (request.body \ "name").asOpt[String].map { name =>
-          println(name)
-            Ok("Hello " + "updateProfile " + name)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }
-
-    def deleteCustomer = Action(parse.json) { request =>
-        (request.body \ "name").asOpt[String].map { name =>
-          println(name)
-            Ok("Hello " + "deleteCustomer" + name)
-        }.getOrElse {
-            BadRequest("Missing parameter [name]")
-        }
-    }  
-
 
 }
