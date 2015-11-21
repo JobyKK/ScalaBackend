@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.mvc._
-import play.api.libs.json.Json
+import play.api.libs.json._
 import play.api.libs.concurrent.Execution.Implicits._
 import models._
 import services.ResumeDao
@@ -9,6 +9,27 @@ import reactivemongo.bson.BSONObjectID
 import scala.concurrent.Future
 
 object ResumeController extends Controller {
+  //TODO try this
+  /*
+    implicit val locationWrites: Writes[Location] = (
+    (JsPath \ "lat").write[Double] and
+    (JsPath \ "long").write[Double]
+    )(unlift(Location.unapply))
+  */
+  implicit val resumeWrites = new Writes[Resume] {
+    def writes(r: Resume): JsValue = {
+      Json.obj(
+        "id" -> r._id.stringify,
+        "creator_id" -> r.creator_id.stringify,
+        "name" -> r.name,
+        "description" -> r.description,
+        "skills" -> r.skills,
+        "experience" -> r.experience,
+        "education" -> r.education,
+        "salary" -> r.salary
+      )
+    }
+  }
 
   case class NewResumeForm(creator_id: String, name: String, description: String,
     skills: String, experience: String, education: String, salary: String) {
@@ -48,10 +69,10 @@ object ResumeController extends Controller {
   def getResume() = Action.async(parse.json) { implicit req =>
     (req.body \ "id").asOpt[String].map { id =>
       for {
-        resumes <- ResumeDao.findById(new BSONObjectID(id.toString))
+        resume <- ResumeDao.findById(new BSONObjectID(id.toString))
       } yield {
-        println(resumes)
-        Ok(Json.toJson(resumes))
+        println(resume)
+        Ok(Json.obj("resume" -> Json.toJson(resume), "error_code" -> 0))
       }
     }.getOrElse(Future.successful(BadRequest("invalid json")))
   }

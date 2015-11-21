@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.mvc._
-import play.api.libs.json.Json
+import play.api.libs.json._
 import play.api.libs.concurrent.Execution.Implicits._
 import models._
 import services.EmployeeDao
@@ -14,6 +14,21 @@ import reactivemongo.bson._
 
 
 object EmployeeController extends Controller {
+
+   implicit val resumeWrites = new Writes[Resume] {
+    def writes(r: Resume): JsValue = {
+      Json.obj(
+        "id" -> r._id.stringify,
+        "creator_id" -> r.creator_id.stringify,
+        "name" -> r.name,
+        "description" -> r.description,
+        "skills" -> r.skills,
+        "experience" -> r.experience,
+        "education" -> r.education,
+        "salary" -> r.salary
+      )
+    }
+  }
 
   case class NewEmployeeForm(
     name: String,
@@ -93,7 +108,8 @@ object EmployeeController extends Controller {
         resumeList <- ResumeDao.findByCreatorId(new BSONObjectID(id.toString))
       } yield {
         println(resumeList)
-        Ok(Json.toJson(resumeList))
+        Ok(Json.obj("resumes" -> Json.toJson(resumeList),
+          "error_code" -> 0))
       }
     }.getOrElse(Future.successful(BadRequest("invalid json")))
   }

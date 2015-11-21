@@ -8,10 +8,10 @@ POST    /employee/getById      		controllers.EmployeeController.getById
 POST    /employee/deleteById      	controllers.EmployeeController.deleteById
 POST    /employee/newEmployee      	controllers.EmployeeController.saveEmployee
 POST    /employee/updateEmployee    controllers.EmployeeController.updateEmployee
+POST	/employee/getResumes		controllers.EmployeeController.getResumes
 
 #Resume
-POST    /resumes                    controllers.ResumeController.getResumes
-POST    /employee/newResume         controllers.ResumeController.saveResume
-POST    /employee/updateResume      controllers.ResumeController.updateResume
-POST    /getResume                  controllers.ResumeController.getResume
-POST    /deleteByIdResume           controllers.ResumeController.deleteById
+POST    /resume/newResume         	controllers.ResumeController.saveResume
+POST    /resume/updateResume      	controllers.ResumeController.updateResume
+POST    /resume/getResume           controllers.ResumeController.getResume
+POST    /resume/deleteById          controllers.ResumeController.deleteById

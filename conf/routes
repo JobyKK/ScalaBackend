@@ -8,6 +8,7 @@ POST    /employee/getById      		controllers.EmployeeController.getById
 POST    /employee/deleteById      	controllers.EmployeeController.deleteById
 POST    /employee/newEmployee      	controllers.EmployeeController.saveEmployee
 POST    /employee/updateEmployee    controllers.EmployeeController.updateEmployee
+POST	/employee/getResumes		controllers.EmployeeController.getResumes
 
 #Resume
 POST    /resume/newResume         	controllers.ResumeController.saveResume

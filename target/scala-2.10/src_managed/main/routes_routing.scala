@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:34fcf5f5f4a8bc6a2cb83ddbdf4ab0e1df280aa0
-// @DATE:Sat Nov 21 20:46:42 EET 2015
+// @HASH:ae1811f340dd9c53bd51a60442a5d6757ef91681
+// @DATE:Sun Nov 22 01:34:46 EET 2015
 
 
 import play.core._
@@ -48,22 +48,26 @@ private[this] lazy val controllers_EmployeeController_saveEmployee3 = Route("POS
 private[this] lazy val controllers_EmployeeController_updateEmployee4 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("employee/updateEmployee"))))
         
 
-// @LINE:13
-private[this] lazy val controllers_ResumeController_saveResume5 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/newResume"))))
+// @LINE:11
+private[this] lazy val controllers_EmployeeController_getResumes5 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("employee/getResumes"))))
         
 
 // @LINE:14
-private[this] lazy val controllers_ResumeController_updateResume6 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/updateResume"))))
+private[this] lazy val controllers_ResumeController_saveResume6 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/newResume"))))
         
 
 // @LINE:15
-private[this] lazy val controllers_ResumeController_getResume7 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/getResume"))))
+private[this] lazy val controllers_ResumeController_updateResume7 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/updateResume"))))
         
 
 // @LINE:16
-private[this] lazy val controllers_ResumeController_deleteById8 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/deleteById"))))
+private[this] lazy val controllers_ResumeController_getResume8 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/getResume"))))
         
-def documentation = List(("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getAll""","""controllers.EmployeeController.getEmployees"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getById""","""controllers.EmployeeController.getById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/deleteById""","""controllers.EmployeeController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/newEmployee""","""controllers.EmployeeController.saveEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/updateEmployee""","""controllers.EmployeeController.updateEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/newResume""","""controllers.ResumeController.saveResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/updateResume""","""controllers.ResumeController.updateResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/getResume""","""controllers.ResumeController.getResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/deleteById""","""controllers.ResumeController.deleteById""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+
+// @LINE:17
+private[this] lazy val controllers_ResumeController_deleteById9 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("resume/deleteById"))))
+        
+def documentation = List(("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getAll""","""controllers.EmployeeController.getEmployees"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getById""","""controllers.EmployeeController.getById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/deleteById""","""controllers.EmployeeController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/newEmployee""","""controllers.EmployeeController.saveEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/updateEmployee""","""controllers.EmployeeController.updateEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getResumes""","""controllers.EmployeeController.getResumes"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/newResume""","""controllers.ResumeController.saveResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/updateResume""","""controllers.ResumeController.updateResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/getResume""","""controllers.ResumeController.getResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/deleteById""","""controllers.ResumeController.deleteById""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -111,32 +115,40 @@ case controllers_EmployeeController_updateEmployee4(params) => {
 }
         
 
-// @LINE:13
-case controllers_ResumeController_saveResume5(params) => {
+// @LINE:11
+case controllers_EmployeeController_getResumes5(params) => {
+   call { 
+        invokeHandler(controllers.EmployeeController.getResumes, HandlerDef(this, "controllers.EmployeeController", "getResumes", Nil,"POST", """""", Routes.prefix + """employee/getResumes"""))
+   }
+}
+        
+
+// @LINE:14
+case controllers_ResumeController_saveResume6(params) => {
    call { 
         invokeHandler(controllers.ResumeController.saveResume, HandlerDef(this, "controllers.ResumeController", "saveResume", Nil,"POST", """Resume""", Routes.prefix + """resume/newResume"""))
    }
 }
         
 
-// @LINE:14
-case controllers_ResumeController_updateResume6(params) => {
+// @LINE:15
+case controllers_ResumeController_updateResume7(params) => {
    call { 
         invokeHandler(controllers.ResumeController.updateResume, HandlerDef(this, "controllers.ResumeController", "updateResume", Nil,"POST", """""", Routes.prefix + """resume/updateResume"""))
    }
 }
         
 
-// @LINE:15
-case controllers_ResumeController_getResume7(params) => {
+// @LINE:16
+case controllers_ResumeController_getResume8(params) => {
    call { 
         invokeHandler(controllers.ResumeController.getResume, HandlerDef(this, "controllers.ResumeController", "getResume", Nil,"POST", """""", Routes.prefix + """resume/getResume"""))
    }
 }
         
 
-// @LINE:16
-case controllers_ResumeController_deleteById8(params) => {
+// @LINE:17
+case controllers_ResumeController_deleteById9(params) => {
    call { 
         invokeHandler(controllers.ResumeController.deleteById, HandlerDef(this, "controllers.ResumeController", "deleteById", Nil,"POST", """""", Routes.prefix + """resume/deleteById"""))
    }
