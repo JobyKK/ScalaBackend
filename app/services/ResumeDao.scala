@@ -38,6 +38,14 @@ object ResumeDao {
     .one[Resume]
   }
 
+
+  def findByCreatorId(id: BSONObjectID): Future[Seq[Resume]] = {
+    collection.find(Json.obj("creator_id" -> id))
+      .sort(Json.obj("_id" -> -1))
+      .cursor[Resume]
+      .collect[Seq]()
+  }
+
   def deleteById(id: BSONObjectID):  Future[BSONObjectID] = {
     collection.remove(Json.obj("_id" -> id)).map {
       case ok if ok.ok =>

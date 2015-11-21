@@ -49,5 +49,4 @@ object EmployeeDao {
   def count: Future[Int] = {
     ReactiveMongoPlugin.db.command(Count(collection.name))
   }
-
 }

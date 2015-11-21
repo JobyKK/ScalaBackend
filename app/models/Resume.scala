@@ -6,6 +6,7 @@ import play.modules.reactivemongo.json.BSONFormats._
 
 case class Resume(
   _id: BSONObjectID,
+  creator_id: BSONObjectID,
   name: String,
   description: String,
   skills: String,

@@ -5,8 +5,13 @@ import play.api.libs.json.Json
 import play.api.libs.concurrent.Execution.Implicits._
 import models._
 import services.EmployeeDao
+import services.ResumeDao
 import reactivemongo.bson.BSONObjectID
 import scala.concurrent.Future
+
+import play.modules.reactivemongo.json._, ImplicitBSONHandlers._
+import reactivemongo.bson._
+
 
 object EmployeeController extends Controller {
 
@@ -17,7 +22,7 @@ object EmployeeController extends Controller {
     email: String,
     phone: String) {
     def toEmployee: Employee = Employee(BSONObjectID.generate, name, category, 
-      status, email, phone, Nil)
+      status, email, phone)
   }
 //TODO add List[BSONObjectID]
   case class EditEmployeeForm(
@@ -26,9 +31,10 @@ object EmployeeController extends Controller {
     category: String,
     status: String,
     email: String,
-    phone: String) {
+    phone: String
+    ) {
     def toEmployee: Employee = Employee(new BSONObjectID(id), name, category, 
-      status, email, phone, Nil)
+      status, email, phone)
   }
 
   implicit val newEmployeeFormFormat = Json.format[NewEmployeeForm]
@@ -80,4 +86,16 @@ object EmployeeController extends Controller {
       form => EmployeeDao.save(form.toEmployee).map(_ => Created)
     )
   }
+
+  def getResumes() = Action.async(parse.json) { implicit req =>
+    (req.body \ "id").asOpt[String].map { id => 
+      for{
+        resumeList <- ResumeDao.findByCreatorId(new BSONObjectID(id.toString))
+      } yield {
+        println(resumeList)
+        Ok(Json.toJson(resumeList))
+      }
+    }.getOrElse(Future.successful(BadRequest("invalid json")))
+  }
+
 }

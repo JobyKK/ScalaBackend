@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:cd20929d5faeea57d42686359737ff3364965d76
-// @DATE:Wed Nov 18 09:45:07 EET 2015
+// @HASH:34fcf5f5f4a8bc6a2cb83ddbdf4ab0e1df280aa0
+// @DATE:Sat Nov 21 20:46:42 EET 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,7 +13,6 @@ import play.api.mvc._
 import Router.queryString
 
 
-// @LINE:17
 // @LINE:16
 // @LINE:15
 // @LINE:14
@@ -25,7 +24,6 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:17
 // @LINE:16
 // @LINE:15
 // @LINE:14
@@ -34,32 +32,26 @@ class ReverseResumeController {
     
 
 // @LINE:16
-def getResume(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "getResume")
-}
-                                                
-
-// @LINE:13
-def getResumes(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "resumes")
+def deleteById(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "resume/deleteById")
 }
                                                 
 
 // @LINE:14
+def updateResume(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "resume/updateResume")
+}
+                                                
+
+// @LINE:13
 def saveResume(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "employee/newResume")
+   Call("POST", _prefix + { _defaultPrefix } + "resume/newResume")
 }
                                                 
 
 // @LINE:15
-def updateResume(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "employee/updateResume")
-}
-                                                
-
-// @LINE:17
-def deleteById(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "deleteByIdResume")
+def getResume(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "resume/getResume")
 }
                                                 
     
@@ -110,7 +102,6 @@ def deleteById(): Call = {
                   
 
 
-// @LINE:17
 // @LINE:16
 // @LINE:15
 // @LINE:14
@@ -122,7 +113,6 @@ def deleteById(): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:17
 // @LINE:16
 // @LINE:15
 // @LINE:14
@@ -131,55 +121,44 @@ class ReverseResumeController {
     
 
 // @LINE:16
-def getResume : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.ResumeController.getResume",
+def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ResumeController.deleteById",
    """
       function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "getResume"})
-      }
-   """
-)
-                        
-
-// @LINE:13
-def getResumes : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.ResumeController.getResumes",
-   """
-      function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "resumes"})
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "resume/deleteById"})
       }
    """
 )
                         
 
 // @LINE:14
+def updateResume : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ResumeController.updateResume",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "resume/updateResume"})
+      }
+   """
+)
+                        
+
+// @LINE:13
 def saveResume : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.ResumeController.saveResume",
    """
       function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "employee/newResume"})
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "resume/newResume"})
       }
    """
 )
                         
 
 // @LINE:15
-def updateResume : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.ResumeController.updateResume",
+def getResume : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.ResumeController.getResume",
    """
       function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "employee/updateResume"})
-      }
-   """
-)
-                        
-
-// @LINE:17
-def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.ResumeController.deleteById",
-   """
-      function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteByIdResume"})
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "resume/getResume"})
       }
    """
 )
@@ -257,7 +236,6 @@ def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:17
 // @LINE:16
 // @LINE:15
 // @LINE:14
@@ -270,7 +248,6 @@ def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:17
 // @LINE:16
 // @LINE:15
 // @LINE:14
@@ -279,32 +256,26 @@ class ReverseResumeController {
     
 
 // @LINE:16
-def getResume(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.ResumeController.getResume(), HandlerDef(this, "controllers.ResumeController", "getResume", Seq(), "POST", """""", _prefix + """getResume""")
-)
-                      
-
-// @LINE:13
-def getResumes(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.ResumeController.getResumes(), HandlerDef(this, "controllers.ResumeController", "getResumes", Seq(), "POST", """Resume""", _prefix + """resumes""")
+def deleteById(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ResumeController.deleteById(), HandlerDef(this, "controllers.ResumeController", "deleteById", Seq(), "POST", """""", _prefix + """resume/deleteById""")
 )
                       
 
 // @LINE:14
+def updateResume(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ResumeController.updateResume(), HandlerDef(this, "controllers.ResumeController", "updateResume", Seq(), "POST", """""", _prefix + """resume/updateResume""")
+)
+                      
+
+// @LINE:13
 def saveResume(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.ResumeController.saveResume(), HandlerDef(this, "controllers.ResumeController", "saveResume", Seq(), "POST", """""", _prefix + """employee/newResume""")
+   controllers.ResumeController.saveResume(), HandlerDef(this, "controllers.ResumeController", "saveResume", Seq(), "POST", """Resume""", _prefix + """resume/newResume""")
 )
                       
 
 // @LINE:15
-def updateResume(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.ResumeController.updateResume(), HandlerDef(this, "controllers.ResumeController", "updateResume", Seq(), "POST", """""", _prefix + """employee/updateResume""")
-)
-                      
-
-// @LINE:17
-def deleteById(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.ResumeController.deleteById(), HandlerDef(this, "controllers.ResumeController", "deleteById", Seq(), "POST", """""", _prefix + """deleteByIdResume""")
+def getResume(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.ResumeController.getResume(), HandlerDef(this, "controllers.ResumeController", "getResume", Seq(), "POST", """""", _prefix + """resume/getResume""")
 )
                       
     

@@ -10,15 +10,15 @@ import scala.concurrent.Future
 
 object ResumeController extends Controller {
 
-  case class NewResumeForm(name: String, description: String,
+  case class NewResumeForm(creator_id: String, name: String, description: String,
     skills: String, experience: String, education: String, salary: String) {
-    def toResume: Resume = Resume(BSONObjectID.generate, name, description, 
+    def toResume: Resume = Resume(BSONObjectID.generate, new BSONObjectID(creator_id), name, description, 
       skills, experience, education, salary)
   }
 
-  case class EditResumeForm(id: String, name: String, description: String,
+  case class EditResumeForm(id: String, creator_id: String, name: String, description: String,
     skills: String, experience: String, education: String, salary: String) {
-    def toResume: Resume = Resume(new BSONObjectID(id), name, description, 
+    def toResume: Resume = Resume(new BSONObjectID(id),  new BSONObjectID(creator_id), name, description, 
       skills, experience, education, salary)
   }
 
@@ -56,20 +56,20 @@ object ResumeController extends Controller {
     }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-
   def saveResume = Action.async(parse.json) { req =>
     println(req.body)
     Json.fromJson[NewResumeForm](req.body).fold(
       invalid => Future.successful(BadRequest("Bad resume form")),
-      form => ResumeDao.save(form.toResume).map(_ => Created)
+      form => ResumeDao.save(form.toResume).map(_ => Ok(Json.obj("error_code" -> 0)))
     )
   }
 
   def updateResume = Action.async(parse.json) { req =>
+    println("updateResume!!!")
     println(req.body)
     Json.fromJson[EditResumeForm](req.body).fold(
       invalid => Future.successful(BadRequest("Bad resume form")),
-      form => ResumeDao.save(form.toResume).map(_ => Created)
+      form => ResumeDao.save(form.toResume).map(_ => Ok(Json.obj("error_code" -> 0)))
     )
   }
 

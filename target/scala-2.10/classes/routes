@@ -3,19 +3,15 @@
 # ~~~~
 
 #Employee
-POST        /resumes               controllers.ResumeController.getResumes
-POST        /employee/newResume           controllers.ResumeController.saveResume
-POST        /getResume             controllers.ResumeController.getResume
+POST    /employee/getAll      		controllers.EmployeeController.getEmployees
+POST    /employee/getById      		controllers.EmployeeController.getById
+POST    /employee/deleteById      	controllers.EmployeeController.deleteById
+POST    /employee/newEmployee      	controllers.EmployeeController.saveEmployee
+POST    /employee/updateEmployee    controllers.EmployeeController.updateEmployee
 
-POST        /deleteByIdResume             controllers.ResumeController.deleteById
-
-
-POST    /employee/resumes      		controllers.ResumeController.resumes
-POST    /employee/resume      		controllers.ResumeController.resume
-#POST   /employee/newResume      	controllers.ResumeController.newResume
+#Resume
+POST    /resumes                    controllers.ResumeController.getResumes
+POST    /employee/newResume         controllers.ResumeController.saveResume
 POST    /employee/updateResume      controllers.ResumeController.updateResume
-POST    /employee/deleteResume      controllers.ResumeController.deleteResume
-
-POST    /employee/profile      		controllers.ResumeController.profile
-POST    /employee/updateProfile     controllers.ResumeController.updateProfile
-POST    /employee/deleteCustomer    controllers.ResumeController.deleteCustomer
+POST    /getResume                  controllers.ResumeController.getResume
+POST    /deleteByIdResume           controllers.ResumeController.deleteById
