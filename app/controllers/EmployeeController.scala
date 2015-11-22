@@ -39,7 +39,7 @@ object EmployeeController extends Controller {
     def toEmployee: Employee = Employee(BSONObjectID.generate, name, category, 
       status, email, phone)
   }
-//TODO add List[BSONObjectID]
+  
   case class EditEmployeeForm(
     id: String,
     name: String,

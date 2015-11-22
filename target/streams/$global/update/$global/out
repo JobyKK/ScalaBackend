@@ -7,7 +7,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT [compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.2 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@6e2f8667[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@4180f2e0[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.2[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.10.2[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.2 in sbt-chain[0m
@@ -132,7 +132,7 @@
 [0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.pom[0m
 [0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.pom.sha1[0m
 [0m[[0mdebug[0m] [0msha1 OK for http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.pom[0m
-[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.apache.logging.log4j#log4j-api;2.0-beta9!log4j-api.pom(pom.original) (381ms)[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.apache.logging.log4j#log4j-api;2.0-beta9!log4j-api.pom(pom.original) (393ms)[0m
 [0m[[0minfo[0m] [0mResolving org.apache.logging.log4j#log4j;2.0-beta9 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.apache.logging.log4j#log4j;2.0-beta9 {}[0m
 [0m[[0mdebug[0m] [0m		tried /home/joby/.ivy2/local/org.apache.logging.log4j/log4j/2.0-beta9/ivys/ivy.xml[0m
@@ -148,7 +148,7 @@
 [0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j/2.0-beta9/log4j-2.0-beta9.pom[0m
 [0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j/2.0-beta9/log4j-2.0-beta9.pom.sha1[0m
 [0m[[0mdebug[0m] [0msha1 OK for http://repo1.maven.org/maven2/org/apache/logging/log4j/log4j/2.0-beta9/log4j-2.0-beta9.pom[0m
-[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.apache.logging.log4j#log4j;2.0-beta9!log4j.pom(pom.original) (423ms)[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.apache.logging.log4j#log4j;2.0-beta9!log4j.pom(pom.original) (503ms)[0m
 [0m[[0minfo[0m] [0mResolving org.apache#apache;9 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.apache#apache;9 {}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.apache#apache;9[0m
@@ -5621,7 +5621,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.ow2.asm#asm-util;4.1!asm-util.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.2!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 7825ms :: artifacts dl 457ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 8520ms :: artifacts dl 114ms[0m
 [0m[[0mdebug[0m] [0m	report for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT compile produced in /home/joby/Prog/Scala/ScalaBackend2/target/resolution-cache/reports/fastwork-backend-fastwork-backend_2.10-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT runtime produced in /home/joby/Prog/Scala/ScalaBackend2/target/resolution-cache/reports/fastwork-backend-fastwork-backend_2.10-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT test produced in /home/joby/Prog/Scala/ScalaBackend2/target/resolution-cache/reports/fastwork-backend-fastwork-backend_2.10-test.xml[0m
@@ -5635,5 +5635,5 @@
 [0m[[0mdebug[0m] [0m	report for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT docs produced in /home/joby/Prog/Scala/ScalaBackend2/target/resolution-cache/reports/fastwork-backend-fastwork-backend_2.10-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT pom produced in /home/joby/Prog/Scala/ScalaBackend2/target/resolution-cache/reports/fastwork-backend-fastwork-backend_2.10-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for fastwork-backend#fastwork-backend_2.10;1.0-SNAPSHOT scala-tool produced in /home/joby/Prog/Scala/ScalaBackend2/target/resolution-cache/reports/fastwork-backend-fastwork-backend_2.10-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (7825ms resolve - 457ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (8520ms resolve - 114ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m
