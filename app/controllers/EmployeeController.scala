@@ -15,7 +15,7 @@ import reactivemongo.bson._
 
 object EmployeeController extends Controller {
 
-   implicit val resumeWrites = new Writes[Resume] {
+  implicit val resumeWrites = new Writes[Resume] {
     def writes(r: Resume): JsValue = {
       Json.obj(
         "id" -> r._id.stringify,
@@ -30,6 +30,19 @@ object EmployeeController extends Controller {
     }
   }
 
+  implicit val employeeWrites = new Writes[Employee] {
+    def writes(e: Employee): JsValue = {
+      Json.obj(
+        "id" -> e._id.stringify,
+        "name" -> e.name,
+        "category" -> e.category,
+        "status" -> e.status,
+        "email" -> e.email,
+        "phone" -> e.phone
+      )
+    }
+  }
+
   case class NewEmployeeForm(
     name: String,
     category: String,
@@ -39,7 +52,7 @@ object EmployeeController extends Controller {
     def toEmployee: Employee = Employee(BSONObjectID.generate, name, category, 
       status, email, phone)
   }
-  
+
   case class EditEmployeeForm(
     id: String,
     name: String,
@@ -77,11 +90,12 @@ object EmployeeController extends Controller {
 
   def getById() = Action.async(parse.json) { implicit req =>
     (req.body \ "id").asOpt[String].map { id =>
+      println("getById " + id)
       for {
         employee <- EmployeeDao.findById(new BSONObjectID(id.toString))
       } yield {
         println(employee)
-        Ok(Json.toJson(employee))
+        Ok(Json.obj("profile" -> Json.toJson(employee), "error_code" -> 0))
       }
     }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
