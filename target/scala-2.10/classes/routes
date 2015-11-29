@@ -10,8 +10,23 @@ POST    /employee/newEmployee      	controllers.EmployeeController.saveEmployee
 POST    /employee/updateEmployee    controllers.EmployeeController.updateEmployee
 POST	/employee/getResumes		controllers.EmployeeController.getResumes
 
+#Employee
+POST    /employer/getAll      		controllers.EmployerController.getEmployers
+POST    /employer/getById      		controllers.EmployerController.getById
+POST    /employer/deleteById      	controllers.EmployerController.deleteById
+POST    /employer/newEmployer      	controllers.EmployerController.saveEmployer
+POST    /employer/updateEmployer    controllers.EmployerController.updateEmployer
+POST	/employer/getPositions		controllers.EmployerController.getPositions
+
 #Resume
 POST    /resume/newResume         	controllers.ResumeController.saveResume
 POST    /resume/updateResume      	controllers.ResumeController.updateResume
 POST    /resume/getResume           controllers.ResumeController.getResume
 POST    /resume/deleteById          controllers.ResumeController.deleteById
+
+#Position
+POST    /position/newPosition       controllers.PositionController.savePosition
+POST    /position/updatePosition    controllers.PositionController.updatePosition
+POST    /position/getPosition       controllers.PositionController.getPosition
+POST    /position/getAll       		controllers.PositionController.getPositions
+POST    /position/deleteById        controllers.PositionController.deleteById

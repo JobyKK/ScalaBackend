@@ -51,7 +51,7 @@ object ResumeController extends Controller {
       resumes <- ResumeDao.findAll()
     } yield {
       println(resumes)
-      Ok(Json.toJson(resumes))
+      Ok(Json.obj("resumes" -> Json.toJson(resumes), "error_code" -> 0))
     }
   }
 
@@ -61,9 +61,9 @@ object ResumeController extends Controller {
         id <- ResumeDao.deleteById(new BSONObjectID(id.toString))
         } yield {
           println(id)
-          Ok("Delete!!!")
+          Ok(Json.obj("error_code" -> 0))
         }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
   def getResume() = Action.async(parse.json) { implicit req =>
@@ -74,13 +74,13 @@ object ResumeController extends Controller {
         println(resume)
         Ok(Json.obj("resume" -> Json.toJson(resume), "error_code" -> 0))
       }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
   def saveResume = Action.async(parse.json) { req =>
     println(req.body)
     Json.fromJson[NewResumeForm](req.body).fold(
-      invalid => Future.successful(BadRequest("Bad resume form")),
+      invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
       form => ResumeDao.save(form.toResume).map(_ => Ok(Json.obj("error_code" -> 0)))
     )
   }
@@ -89,7 +89,7 @@ object ResumeController extends Controller {
     println("updateResume!!!")
     println(req.body)
     Json.fromJson[EditResumeForm](req.body).fold(
-      invalid => Future.successful(BadRequest("Bad resume form")),
+      invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
       form => ResumeDao.save(form.toResume).map(_ => Ok(Json.obj("error_code" -> 0)))
     )
   }

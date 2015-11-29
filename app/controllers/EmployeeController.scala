@@ -73,7 +73,7 @@ object EmployeeController extends Controller {
       employees <- EmployeeDao.findAll()
     } yield {
       println(employees)
-      Ok(Json.toJson(employees))
+      Ok(Json.obj("emplyees" -> Json.toJson(employees), "error_code" -> 0))
     }
   }
 
@@ -85,7 +85,7 @@ object EmployeeController extends Controller {
           println(id)
           Ok("Delete!!!")
         }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
   def getById() = Action.async(parse.json) { implicit req =>
@@ -97,22 +97,22 @@ object EmployeeController extends Controller {
         println(employee)
         Ok(Json.obj("profile" -> Json.toJson(employee), "error_code" -> 0))
       }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
   def saveEmployee = Action.async(parse.json) { req =>
     println(req.body)
     Json.fromJson[NewEmployeeForm](req.body).fold(
-      invalid => Future.successful(BadRequest("Bad resume form")),
-      form => EmployeeDao.save(form.toEmployee).map(_ => Created)
+      invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
+      form => EmployeeDao.save(form.toEmployee).map(_ => Ok(Json.obj("error_code" -> 0)))
     )
   }
 
   def updateEmployee = Action.async(parse.json) { req =>
     println(req.body)
     Json.fromJson[EditEmployeeForm](req.body).fold(
-      invalid => Future.successful(BadRequest("Bad resume form")),
-      form => EmployeeDao.save(form.toEmployee).map(_ => Created)
+      invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
+      form => EmployeeDao.save(form.toEmployee).map(_ => Ok(Json.obj("error_code" -> 0)))
     )
   }
 
@@ -125,7 +125,7 @@ object EmployeeController extends Controller {
         Ok(Json.obj("resumes" -> Json.toJson(resumeList),
           "error_code" -> 0))
       }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
 }
