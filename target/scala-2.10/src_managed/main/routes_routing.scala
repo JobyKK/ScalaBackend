@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:fd032b2217285798f5a3e0830cee2869ac05a2ba
-// @DATE:Sun Nov 29 12:13:30 EET 2015
+// @HASH:34b8005b412c9388ab4a02181b81c48e6a8efa0e
+// @DATE:Sun Dec 13 10:44:10 EET 2015
 
 
 import play.core._
@@ -170,7 +170,7 @@ case controllers_EmployeeController_getResumes5(params) => {
 // @LINE:14
 case controllers_EmployerController_getEmployers6(params) => {
    call { 
-        invokeHandler(controllers.EmployerController.getEmployers, HandlerDef(this, "controllers.EmployerController", "getEmployers", Nil,"POST", """Employee""", Routes.prefix + """employer/getAll"""))
+        invokeHandler(controllers.EmployerController.getEmployers, HandlerDef(this, "controllers.EmployerController", "getEmployers", Nil,"POST", """Employer""", Routes.prefix + """employer/getAll"""))
    }
 }
         

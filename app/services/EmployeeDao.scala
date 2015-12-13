@@ -38,6 +38,11 @@ object EmployeeDao {
     .one[Employee]
   }
 
+  def findByEmail(email: String): Future[Option[Employee]] = {
+    collection.find(Json.obj("email" -> email))
+    .one[Employee]
+  }
+
   def deleteById(id: BSONObjectID):  Future[BSONObjectID] = {
     collection.remove(Json.obj("_id" -> id)).map {
       case ok if ok.ok =>

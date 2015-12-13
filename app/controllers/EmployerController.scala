@@ -45,7 +45,6 @@ object EmployerController extends Controller {
   case class NewEmployerForm(
     name: String,
     category: String,
-    status: String,
     email: String,
     phone: String, 
     website: String) {
@@ -97,11 +96,23 @@ object EmployerController extends Controller {
     }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
+  def getByEmail() = Action.async(parse.json) { implicit req =>
+    (req.body \ "email").asOpt[String].map { email =>
+      for {
+        employer <- EmployerDao.findByEmail(email)
+      } yield {
+        println(employer)
+        Ok(Json.obj("profile" -> Json.toJson(employer), "error_code" -> 0))
+      }
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
+  }
+
+
   def saveEmployer = Action.async(parse.json) { req =>
     println(req.body)
     Json.fromJson[NewEmployerForm](req.body).fold(
       invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
-      form => EmployerDao.save(form.toEmployer).map(_ => Ok(Json.obj("error_code" -> 0)))
+      form => EmployerDao.save(form.toEmployer).map(employer => Ok(Json.obj("error_code" -> 0, "id" -> employer._id.toString)))
     )
   }
 

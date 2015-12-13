@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:fd032b2217285798f5a3e0830cee2869ac05a2ba
-// @DATE:Sun Nov 29 12:13:30 EET 2015
+// @HASH:34b8005b412c9388ab4a02181b81c48e6a8efa0e
+// @DATE:Sun Dec 13 10:44:10 EET 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -694,7 +694,7 @@ def getById(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 
 // @LINE:14
 def getEmployers(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.EmployerController.getEmployers(), HandlerDef(this, "controllers.EmployerController", "getEmployers", Seq(), "POST", """Employee""", _prefix + """employer/getAll""")
+   controllers.EmployerController.getEmployers(), HandlerDef(this, "controllers.EmployerController", "getEmployers", Seq(), "POST", """Employer""", _prefix + """employer/getAll""")
 )
                       
 

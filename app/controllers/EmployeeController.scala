@@ -100,11 +100,23 @@ object EmployeeController extends Controller {
     }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
   }
 
+  def getByEmail() = Action.async(parse.json) { implicit req =>
+    (req.body \ "email").asOpt[String].map { email =>
+      println("getByEmail " + email)
+      for {
+        employee <- EmployeeDao.findByEmail(email)
+      } yield {
+        println(employee)
+        Ok(Json.obj("profile" -> Json.toJson(employee), "error_code" -> 0))
+      }
+    }.getOrElse(Future.successful(BadRequest(Json.obj("error_code" -> 8))))
+  }
+
   def saveEmployee = Action.async(parse.json) { req =>
     println(req.body)
     Json.fromJson[NewEmployeeForm](req.body).fold(
       invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
-      form => EmployeeDao.save(form.toEmployee).map(_ => Ok(Json.obj("error_code" -> 0)))
+      form => EmployeeDao.save(form.toEmployee).map(employee => Ok(Json.obj("error_code" -> 0, "id" -> employee._id.toString)))
     )
   }
 
