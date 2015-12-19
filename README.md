@@ -29,7 +29,6 @@ Backend part with mongodb and async
 ##### 4. Position
 *POST    /position/newPosition*   
 *POST    /position/updatePosition*   
-*POST    /position/updatePosition*   
 *POST    /position/getPosition*   
 *POST    /position/getAll*       		
 *POST    /position/deleteById*      
