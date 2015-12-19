@@ -112,7 +112,8 @@ object EmployerController extends Controller {
     println(req.body)
     Json.fromJson[NewEmployerForm](req.body).fold(
       invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
-      form => EmployerDao.save(form.toEmployer).map(employer => Ok(Json.obj("error_code" -> 0, "id" -> employer._id.toString)))
+      form => EmployerDao.save(form.toEmployer).map(employer => 
+        Ok(Json.obj("error_code" -> 0, "id" -> employer._id.stringify)))
     )
   }
 

@@ -116,7 +116,8 @@ object EmployeeController extends Controller {
     println(req.body)
     Json.fromJson[NewEmployeeForm](req.body).fold(
       invalid => Future.successful(BadRequest(Json.obj("error_code" -> 8))),
-      form => EmployeeDao.save(form.toEmployee).map(employee => Ok(Json.obj("error_code" -> 0, "id" -> employee._id.toString)))
+      form => EmployeeDao.save(form.toEmployee).map(employee => 
+        Ok(Json.obj("error_code" -> 0, "id" -> employee._id.stringify)))
     )
   }
 
