@@ -10,9 +10,23 @@ import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json.Json
 import reactivemongo.api.QueryOpts
 import reactivemongo.core.commands.Count
-import reactivemongo.bson.BSONObjectID
+import reactivemongo.bson._
+import reactivemongo.core.commands.RawCommand
 
 object PositionDao {
+
+  implicit object positionReader extends BSONDocumentReader[Position] {
+    def read(doc: BSONDocument): Position = {
+      Position(
+        doc.getAs[BSONObjectID]("_id").get,
+        doc.getAs[BSONObjectID]("creator_id").get,
+        doc.getAs[String]("name").get,
+        doc.getAs[String]("description").get,
+        doc.getAs[String]("requirements").get,
+        doc.getAs[String]("location").get,
+        doc.getAs[List[String]]("resumes").get)
+    }
+  }
 
   private def collection = ReactiveMongoPlugin.db.collection[JSONCollection]("positions")
 
@@ -52,6 +66,28 @@ object PositionDao {
       case error => throw new RuntimeException(error.message)
     }
   }
+
+  def seachAll(query: String): Future[Seq[Position]] = {
+    val commandDoc = BSONDocument("text" -> "positions", "search" -> query)
+    // println(BSONDocument.pretty(commandDoc))
+    val futureResult = ReactiveMongoPlugin.db.command(RawCommand(commandDoc))
+
+    futureResult.map { result =>
+      result.getAs[BSONArray]("results").map{values =>
+        println(BSONArray.pretty(values))
+        values.values.toSeq.flatMap{case value =>
+          value match {
+            case v: BSONDocument => v.getAs[Position]("obj")
+            case _ => None
+          }
+        }
+      }.getOrElse(Seq.empty[Position])
+    }
+  }
+  // // collection.find(Json.obj())
+  // //   .sort(Json.obj("_id" -> -1))
+  // //   .cursor[Position]
+  // //   .collect[Seq]()
 
   def count: Future[Int] = {
     ReactiveMongoPlugin.db.command(Count(collection.name))

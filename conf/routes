@@ -29,4 +29,5 @@ POST    /position/newPosition       controllers.PositionController.savePosition
 POST    /position/updatePosition    controllers.PositionController.updatePosition
 POST    /position/getPosition       controllers.PositionController.getPosition
 POST    /position/getAll       		controllers.PositionController.getPositions
+POST    /position/search       		controllers.PositionController.seachPositions
 POST    /position/deleteById        controllers.PositionController.deleteById

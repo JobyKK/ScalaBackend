@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:34b8005b412c9388ab4a02181b81c48e6a8efa0e
-// @DATE:Sun Dec 13 10:44:10 EET 2015
+// @HASH:580a8f494de9e8859110c9923d8f1ed8ee2d8cd0
+// @DATE:Mon Dec 28 01:34:25 EET 2015
 
 package controllers;
 

@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:34b8005b412c9388ab4a02181b81c48e6a8efa0e
-// @DATE:Sun Dec 13 10:44:10 EET 2015
+// @HASH:580a8f494de9e8859110c9923d8f1ed8ee2d8cd0
+// @DATE:Mon Dec 28 01:34:25 EET 2015
 
 
 import play.core._
@@ -109,9 +109,13 @@ private[this] lazy val controllers_PositionController_getPositions19 = Route("PO
         
 
 // @LINE:32
-private[this] lazy val controllers_PositionController_deleteById20 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("position/deleteById"))))
+private[this] lazy val controllers_PositionController_seachPositions20 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("position/search"))))
         
-def documentation = List(("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getAll""","""controllers.EmployeeController.getEmployees"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getById""","""controllers.EmployeeController.getById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/deleteById""","""controllers.EmployeeController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/newEmployee""","""controllers.EmployeeController.saveEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/updateEmployee""","""controllers.EmployeeController.updateEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getResumes""","""controllers.EmployeeController.getResumes"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/getAll""","""controllers.EmployerController.getEmployers"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/getById""","""controllers.EmployerController.getById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/deleteById""","""controllers.EmployerController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/newEmployer""","""controllers.EmployerController.saveEmployer"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/updateEmployer""","""controllers.EmployerController.updateEmployer"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/getPositions""","""controllers.EmployerController.getPositions"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/newResume""","""controllers.ResumeController.saveResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/updateResume""","""controllers.ResumeController.updateResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/getResume""","""controllers.ResumeController.getResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/deleteById""","""controllers.ResumeController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/newPosition""","""controllers.PositionController.savePosition"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/updatePosition""","""controllers.PositionController.updatePosition"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/getPosition""","""controllers.PositionController.getPosition"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/getAll""","""controllers.PositionController.getPositions"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/deleteById""","""controllers.PositionController.deleteById""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
+
+// @LINE:33
+private[this] lazy val controllers_PositionController_deleteById21 = Route("POST", PathPattern(List(StaticPart(Routes.prefix),StaticPart(Routes.defaultPrefix),StaticPart("position/deleteById"))))
+        
+def documentation = List(("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getAll""","""controllers.EmployeeController.getEmployees"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getById""","""controllers.EmployeeController.getById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/deleteById""","""controllers.EmployeeController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/newEmployee""","""controllers.EmployeeController.saveEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/updateEmployee""","""controllers.EmployeeController.updateEmployee"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employee/getResumes""","""controllers.EmployeeController.getResumes"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/getAll""","""controllers.EmployerController.getEmployers"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/getById""","""controllers.EmployerController.getById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/deleteById""","""controllers.EmployerController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/newEmployer""","""controllers.EmployerController.saveEmployer"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/updateEmployer""","""controllers.EmployerController.updateEmployer"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """employer/getPositions""","""controllers.EmployerController.getPositions"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/newResume""","""controllers.ResumeController.saveResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/updateResume""","""controllers.ResumeController.updateResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/getResume""","""controllers.ResumeController.getResume"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """resume/deleteById""","""controllers.ResumeController.deleteById"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/newPosition""","""controllers.PositionController.savePosition"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/updatePosition""","""controllers.PositionController.updatePosition"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/getPosition""","""controllers.PositionController.getPosition"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/getAll""","""controllers.PositionController.getPositions"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/search""","""controllers.PositionController.seachPositions"""),("""POST""", prefix + (if(prefix.endsWith("/")) "" else "/") + """position/deleteById""","""controllers.PositionController.deleteById""")).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
   case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
   case l => s ++ l.asInstanceOf[List[(String,String,String)]] 
 }}
@@ -280,7 +284,15 @@ case controllers_PositionController_getPositions19(params) => {
         
 
 // @LINE:32
-case controllers_PositionController_deleteById20(params) => {
+case controllers_PositionController_seachPositions20(params) => {
+   call { 
+        invokeHandler(controllers.PositionController.seachPositions, HandlerDef(this, "controllers.PositionController", "seachPositions", Nil,"POST", """""", Routes.prefix + """position/search"""))
+   }
+}
+        
+
+// @LINE:33
+case controllers_PositionController_deleteById21(params) => {
    call { 
         invokeHandler(controllers.PositionController.deleteById, HandlerDef(this, "controllers.PositionController", "deleteById", Nil,"POST", """""", Routes.prefix + """position/deleteById"""))
    }

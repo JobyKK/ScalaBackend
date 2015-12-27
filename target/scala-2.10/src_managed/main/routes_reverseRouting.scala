@@ -1,6 +1,6 @@
 // @SOURCE:/home/joby/Prog/Scala/ScalaBackend2/conf/routes
-// @HASH:34b8005b412c9388ab4a02181b81c48e6a8efa0e
-// @DATE:Sun Dec 13 10:44:10 EET 2015
+// @HASH:580a8f494de9e8859110c9923d8f1ed8ee2d8cd0
+// @DATE:Mon Dec 28 01:34:25 EET 2015
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,6 +13,7 @@ import play.api.mvc._
 import Router.queryString
 
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -36,6 +37,7 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -47,6 +49,12 @@ class ReversePositionController {
 // @LINE:30
 def getPosition(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "position/getPosition")
+}
+                                                
+
+// @LINE:32
+def seachPositions(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "position/search")
 }
                                                 
 
@@ -68,7 +76,7 @@ def updatePosition(): Call = {
 }
                                                 
 
-// @LINE:32
+// @LINE:33
 def deleteById(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "position/deleteById")
 }
@@ -210,6 +218,7 @@ def deleteById(): Call = {
                   
 
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -233,6 +242,7 @@ def deleteById(): Call = {
 // @LINE:6
 package controllers.javascript {
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -247,6 +257,17 @@ def getPosition : JavascriptReverseRoute = JavascriptReverseRoute(
    """
       function() {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "position/getPosition"})
+      }
+   """
+)
+                        
+
+// @LINE:32
+def seachPositions : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.PositionController.seachPositions",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "position/search"})
       }
    """
 )
@@ -285,7 +306,7 @@ def updatePosition : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:32
+// @LINE:33
 def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.PositionController.deleteById",
    """
@@ -512,6 +533,7 @@ def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -536,6 +558,7 @@ def deleteById : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
+// @LINE:33
 // @LINE:32
 // @LINE:31
 // @LINE:30
@@ -547,6 +570,12 @@ class ReversePositionController {
 // @LINE:30
 def getPosition(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.PositionController.getPosition(), HandlerDef(this, "controllers.PositionController", "getPosition", Seq(), "POST", """""", _prefix + """position/getPosition""")
+)
+                      
+
+// @LINE:32
+def seachPositions(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.PositionController.seachPositions(), HandlerDef(this, "controllers.PositionController", "seachPositions", Seq(), "POST", """""", _prefix + """position/search""")
 )
                       
 
@@ -568,7 +597,7 @@ def updatePosition(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:32
+// @LINE:33
 def deleteById(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.PositionController.deleteById(), HandlerDef(this, "controllers.PositionController", "deleteById", Seq(), "POST", """""", _prefix + """position/deleteById""")
 )
